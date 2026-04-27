@@ -58,7 +58,7 @@ export default function Home() {
       <Nav />
 
       {/* Hero */}
-      <section style={{ position: 'relative', height: isMobile ? '100svh' : 780, minHeight: isMobile ? 560 : 'auto', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', height: isMobile ? 520 : 780, overflow: 'hidden' }}>
         <img
           src={unsplash('1522778526097-ce0a22ceb253', 1920, 780)}
           alt="Hardlopers in het stadion bij gouden uur"
