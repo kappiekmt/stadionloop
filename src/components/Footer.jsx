@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { B } from '../theme';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 
@@ -16,14 +17,33 @@ export default function Footer() {
           </div>
         </div>
         {[
-          ['Evenement', ['Inschrijven', 'Parcours', 'Tijdschema', 'FAQ']],
-          ['Stichting', ['Over ons', 'Bestuur', 'ANBI', 'Jaarverslag']],
-          ['Volg', ['Instagram', 'Strava', 'LinkedIn', 'Newsletter']],
+          ['Evenement', [
+            ['/etappes',   'Etappes'],
+            ['/barometers','Barometers'],
+            ['/veiling',   'Veiling'],
+            ['/contact',   'Contact'],
+          ]],
+          ['Stichting', [
+            ['/over',       'Over ons'],
+            ['/over',       'Bestuur'],
+            ['/sponsoren',  'Sponsoren'],
+            ['/contact',    'ANBI'],
+          ]],
+          ['Volg', [
+            ['https://instagram.com/stadionloop', 'Instagram'],
+            ['https://strava.com',                'Strava'],
+            ['https://linkedin.com',              'LinkedIn'],
+            ['/contact',                          'Newsletter'],
+          ]],
         ].map(([title, links]) => (
           <div key={title}>
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, marginBottom: 14 }}>{title}</div>
             <div style={{ lineHeight: 2, fontSize: 14 }}>
-              {links.map((link) => <div key={link}>{link}</div>)}
+              {links.map(([href, label]) =>
+                href.startsWith('http')
+                  ? <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', color: B.ink, textDecoration: 'none' }}>{label}</a>
+                  : <Link key={label} to={href} style={{ display: 'block', color: B.ink, textDecoration: 'none' }}>{label}</Link>
+              )}
             </div>
           </div>
         ))}
