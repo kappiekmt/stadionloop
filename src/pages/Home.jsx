@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { B } from '../theme';
 import { unsplash } from '../utils';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 function ManifestoSection() {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
+  const { isMobile, isTablet } = useBreakpoint();
 
   useEffect(() => {
     const el = ref.current;
@@ -28,9 +30,9 @@ function ManifestoSection() {
   ];
 
   return (
-    <section ref={ref} style={{ padding: '120px 48px', borderTop: `1px solid ${B.rule}` }}>
+    <section ref={ref} style={{ padding: isMobile ? '64px 20px' : isTablet ? '80px 32px' : '120px 48px', borderTop: `1px solid ${B.rule}` }}>
       <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 32 }}>§ Manifesto</div>
-      <h2 style={{ fontFamily: B.display, fontSize: 'clamp(48px, 8vw, 128px)', fontWeight: 900, lineHeight: .88, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0, maxWidth: 1400 }}>
+      <h2 style={{ fontFamily: B.display, fontSize: 'clamp(40px, 7vw, 128px)', fontWeight: 900, lineHeight: .88, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0 }}>
         {all.map(({ w, muted, d }, i) => (
           <span key={i} style={{
             display: 'inline-block',
@@ -47,12 +49,16 @@ function ManifestoSection() {
 }
 
 export default function Home() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const pad = isMobile ? '56px 20px' : isTablet ? '64px 32px' : '80px 48px';
+  const padSm = isMobile ? '20px' : isTablet ? '32px' : '48px';
+
   return (
     <div style={{ background: B.bg, color: B.ink, fontFamily: B.sans, minHeight: '100vh' }}>
       <Nav />
 
       {/* Hero */}
-      <section style={{ position: 'relative', height: 780, overflow: 'hidden' }}>
+      <section style={{ position: 'relative', height: isMobile ? '100svh' : 780, minHeight: isMobile ? 560 : 'auto', overflow: 'hidden' }}>
         <img
           src={unsplash('1522778526097-ce0a22ceb253', 1920, 780)}
           alt="Hardlopers in het stadion bij gouden uur"
@@ -60,54 +66,53 @@ export default function Home() {
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,14,14,.4) 0%, rgba(14,14,14,.1) 40%, rgba(14,14,14,.95) 100%)' }} />
 
-        <div style={{ position: 'absolute', top: 32, left: 48, right: 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
-          <span><span style={{ color: B.accent }}>●&nbsp;LIVE</span> · Editie 03 · 13.06.2026</span>
-          <span>De Adelaarshorst · Deventer · NL</span>
+        <div style={{ position: 'absolute', top: 24, left: isMobile ? 20 : 48, right: isMobile ? 20 : 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: isMobile ? 10 : 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
+          <span><span style={{ color: B.accent }}>●&nbsp;LIVE</span>{isMobile ? '' : ' · Editie 03 · 13.06.2026'}</span>
+          {!isMobile && <span>De Adelaarshorst · Deventer · NL</span>}
         </div>
 
-        <div style={{ position: 'absolute', left: 48, right: 48, bottom: 80 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'end', gap: 48 }}>
+        <div style={{ position: 'absolute', left: isMobile ? 20 : 48, right: isMobile ? 20 : 48, bottom: isMobile ? 56 : 80 }}>
+          <div style={{ display: isMobile ? 'flex' : 'grid', flexDirection: isMobile ? 'column' : undefined, gridTemplateColumns: isMobile ? undefined : '1fr auto', alignItems: 'end', gap: isMobile ? 24 : 48 }}>
             <div>
-              <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>
-              <h1 style={{ fontFamily: B.display, fontSize: 'clamp(100px, 13vw, 200px)', lineHeight: .82, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
+              {!isMobile && <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>}
+              <h1 style={{ fontFamily: B.display, fontSize: 'clamp(72px, 13vw, 200px)', lineHeight: .82, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
                 De<br />
                 <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>STADION{'\n'}LOOP.</span>
               </h1>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end' }}>
-              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Schrijf je in →</button>
-              <button className="btn-ghost" style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>
+            <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: 10, alignItems: isMobile ? 'center' : 'flex-end' }}>
+              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: isMobile ? '14px 20px' : '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Inschrijven →</button>
+              {!isMobile && <button className="btn-ghost" style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>}
             </div>
           </div>
         </div>
 
         {/* Ticker */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: `1px solid ${B.rule}`, background: 'rgba(14,14,14,.6)', backdropFilter: 'blur(8px)', padding: '14px 48px', display: 'flex', gap: 48, fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: `1px solid ${B.rule}`, background: 'rgba(14,14,14,.6)', backdropFilter: 'blur(8px)', padding: isMobile ? '12px 20px' : '14px 48px', display: 'flex', gap: isMobile ? 24 : 48, fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, overflow: 'hidden' }}>
           <span><span style={{ color: B.accent }}>★</span>&nbsp;&nbsp;Inschrijving open</span>
-          <span>2400 lopers vorig jaar</span>
-          <span>€ 87.000 opgehaald in 2025</span>
-          <span><span style={{ color: B.accent }}>★</span>&nbsp;&nbsp;Eindstreep op de middencirkel</span>
-          <span>3 afstanden</span>
-          <span>Live tracking · Strava</span>
+          {!isMobile && <span>2400 lopers vorig jaar</span>}
+          <span>€ 87.000 opgehaald</span>
+          {!isMobile && <span><span style={{ color: B.accent }}>★</span>&nbsp;&nbsp;Eindstreep middencirkel</span>}
+          {!isMobile && <span>3 afstanden · Live tracking</span>}
         </div>
       </section>
 
       {/* Stats */}
-      <section style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 1, background: B.rule }}>
+      <section style={{ padding: isMobile ? '0' : '0', display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap: 1, background: B.rule }}>
         {[['03', 'editie 2026'], ['10', 'kilometer'], ['2400', 'lopers, 2025'], ['87K', 'euro opgehaald']].map(([n, l], i) => (
-          <div key={i} style={{ background: B.bg, padding: '4px 24px' }}>
-            <div style={{ fontFamily: B.display, fontSize: 'clamp(64px, 8vw, 120px)', fontWeight: 900, letterSpacing: '-.04em', lineHeight: 1, color: i === 0 ? B.accent : B.ink }}>{n}</div>
-            <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, marginTop: 8 }}>{l}</div>
+          <div key={i} style={{ background: B.bg, padding: isMobile ? '20px 16px' : '4px 24px' }}>
+            <div style={{ fontFamily: B.display, fontSize: 'clamp(48px, 8vw, 120px)', fontWeight: 900, letterSpacing: '-.04em', lineHeight: 1, color: i === 0 ? B.accent : B.ink }}>{n}</div>
+            <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, marginTop: 8, marginBottom: isMobile ? 8 : 0 }}>{l}</div>
           </div>
         ))}
       </section>
 
       {/* YouTube video */}
-      <section style={{ padding: '80px 48px', borderTop: `1px solid ${B.rule}` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 64, alignItems: 'center', marginBottom: 40 }}>
+      <section style={{ padding: pad, borderTop: `1px solid ${B.rule}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 2fr', gap: isTablet ? 32 : 64, alignItems: 'center' }}>
           <div>
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 16 }}>▶ In beeld</div>
-            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(36px, 4vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 20px' }}>
+            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(32px, 4vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 16px' }}>
               De tocht in beeld.
             </h2>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: B.muted, margin: 0 }}>
@@ -127,32 +132,32 @@ export default function Home() {
       </section>
 
       {/* Auction promo */}
-      <section style={{ padding: '48px', borderTop: `1px solid ${B.rule}`, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, background: B.bg }}>
-        <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', minHeight: 520 }}>
+      <section style={{ padding: padSm, borderTop: `1px solid ${B.rule}`, display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1.2fr 1fr', gap: 24 }}>
+        <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', minHeight: isMobile ? 320 : 520 }}>
           <img
             src={unsplash('1616124619460-ff4ed8f4683c', 900, 600)}
-            alt="Go Ahead Eagles memorabilia en matchworn shirts"
+            alt="Go Ahead Eagles memorabilia"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,.55), rgba(0,0,0,.1))' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,.6), rgba(0,0,0,.15))' }} />
           <div style={{ position: 'absolute', top: 24, left: 24, fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.gold, textTransform: 'uppercase' }}>★ Coming soon</div>
           <div style={{ position: 'absolute', bottom: 32, left: 32, right: 32 }}>
-            <div style={{ fontFamily: B.display, fontSize: 'clamp(48px, 5vw, 72px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase', marginBottom: 14 }}>
+            <div style={{ fontFamily: B.display, fontSize: 'clamp(36px, 5vw, 72px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase', marginBottom: 14 }}>
               The auction.<br /><span style={{ color: B.accent }}>Eagles edition.</span>
             </div>
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 24 }}>
-          <div style={{ padding: 40, background: B.surface, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ display: 'grid', gridTemplateRows: isMobile ? 'auto auto' : '1fr 1fr', gap: 24 }}>
+          <div style={{ padding: isMobile ? 24 : 40, background: B.surface, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 16 }}>
             <div>
               <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', color: B.muted, textTransform: 'uppercase', marginBottom: 16 }}>12 unieke kavels</div>
-              <h3 style={{ fontFamily: B.display, fontSize: 'clamp(24px, 2.5vw, 36px)', fontWeight: 800, lineHeight: 1, letterSpacing: '-.02em', textTransform: 'uppercase', margin: 0 }}>Matchworn, gesigneerd, onmisbaar.</h3>
+              <h3 style={{ fontFamily: B.display, fontSize: 'clamp(22px, 2.5vw, 36px)', fontWeight: 800, lineHeight: 1, letterSpacing: '-.02em', textTransform: 'uppercase', margin: 0 }}>Matchworn, gesigneerd, onmisbaar.</h3>
             </div>
-            <div style={{ fontSize: 14, color: B.muted, lineHeight: 1.55, marginTop: 24 }}>Shirts, ballen, tribunestoelen en stadionervaringen. 100% van de opbrengst gaat naar projecten in Deventer.</div>
+            <div style={{ fontSize: 14, color: B.muted, lineHeight: 1.55 }}>Shirts, ballen, tribunestoelen en stadionervaringen. 100% van de opbrengst gaat naar projecten in Deventer.</div>
           </div>
-          <div style={{ padding: 40, background: B.accent, color: B.bg, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ padding: isMobile ? 24 : 40, background: B.accent, color: B.bg, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 16 }}>
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', textTransform: 'uppercase', opacity: .85 }}>Start veiling</div>
-            <div style={{ fontFamily: B.display, fontSize: 'clamp(48px, 5vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase' }}>04.06<br />2026</div>
+            <div style={{ fontFamily: B.display, fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase' }}>04.06<br />2026</div>
             <Link to="/veiling">
               <button className="btn-dark" style={{ background: B.bg, color: B.ink, border: 'none', padding: '14px 24px', borderRadius: 999, fontWeight: 600, fontSize: 13, letterSpacing: '.04em' }}>Naar veiling →</button>
             </Link>
@@ -160,43 +165,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Manifesto — word-by-word scroll reveal */}
+      {/* Manifesto */}
       <ManifestoSection />
 
       {/* Pim Oostendorp */}
-      <section style={{ padding: '100px 48px', borderTop: `1px solid ${B.rule}` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+      <section style={{ padding: pad, borderTop: `1px solid ${B.rule}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 1fr', gap: isTablet ? 40 : 80, alignItems: 'center' }}>
           <div>
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 24 }}>★ Het gezicht van de Stadionloop</div>
-            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(36px, 4vw, 64px)', fontWeight: 900, lineHeight: .92, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 32px' }}>
+            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(32px, 4vw, 64px)', fontWeight: 900, lineHeight: .92, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 28px' }}>
               Pim (77) loopt voor de toekomst van anderen. Jij ook?
             </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 20px', maxWidth: 520 }}>
+            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 20px' }}>
               Loop mee. Of sponsor een etappe. Elke stap telt. Of je nu de wandelschoenen aantrekt of een etappe adopteert als sponsor — jij helpt mee om voetbal weer toegankelijk te maken voor iedereen.
             </p>
-            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 40px', maxWidth: 520 }}>
+            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 36px' }}>
               Samen zorgen we ervoor dat niemand aan de zijlijn hoeft te staan. Niet in het stadion. En niet in het leven. Maak van voetbal weer iets van ons allemaal.
             </p>
             <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: '16px 32px', fontSize: 13, letterSpacing: '.06em', fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>
               Etappe sponsoren →
             </button>
           </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden' }}>
+          <div style={{ borderRadius: 12, overflow: 'hidden', order: isTablet ? -1 : 0 }}>
             <img
               src={unsplash('1489659831163-682b5af42225', 700, 620)}
               alt="Pim Oostendorp loopt de Stadionloop"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', aspectRatio: isTablet ? '16/9' : '4/3', objectFit: 'cover', display: 'block' }}
             />
           </div>
         </div>
       </section>
 
       {/* Partners */}
-      <section style={{ padding: '48px', borderTop: `1px solid ${B.rule}` }}>
+      <section style={{ padding: pad, borderTop: `1px solid ${B.rule}` }}>
         <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', color: B.muted, textTransform: 'uppercase', marginBottom: 32 }}>★ Onze partners</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 1, background: B.rule }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : isTablet ? 'repeat(3,1fr)' : 'repeat(5,1fr)', gap: 1, background: B.rule }}>
           {['Go Ahead Eagles', 'Gem. Deventer', 'Run2Day', 'UNICEF', 'RaboBank'].map((p) => (
-            <div key={p} style={{ background: B.bg, padding: '40px 24px', fontFamily: B.display, fontSize: 18, fontWeight: 700, letterSpacing: '.02em', textTransform: 'uppercase', color: B.muted }}>{p}</div>
+            <div key={p} style={{ background: B.bg, padding: isMobile ? '24px 16px' : '40px 24px', fontFamily: B.display, fontSize: isMobile ? 14 : 18, fontWeight: 700, letterSpacing: '.02em', textTransform: 'uppercase', color: B.muted }}>{p}</div>
           ))}
         </div>
       </section>

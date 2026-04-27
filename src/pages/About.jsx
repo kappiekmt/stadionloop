@@ -1,50 +1,55 @@
 import { B } from '../theme';
 import { unsplash } from '../utils';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 const PILLARS = [
-  ['01', 'Jeugd', 'Sport, talentbegeleiding en mentale steun voor jongeren in Deventer-Oost.', 'red'],
-  ['02', 'Inclusie', 'Voetbal toegankelijk maken voor wie het anders niet zou bereiken.', 'dark'],
-  ['03', 'Erfgoed', 'Het verhaal van De Adelaarshorst en Deventer voetbalcultuur bewaren.', 'gold'],
+  ['01', 'Jeugd', 'Sport, talentbegeleiding en mentale steun voor jongeren in Deventer-Oost.'],
+  ['02', 'Inclusie', 'Voetbal toegankelijk maken voor wie het anders niet zou bereiken.'],
+  ['03', 'Erfgoed', 'Het verhaal van De Adelaarshorst en Deventer voetbalcultuur bewaren.'],
 ];
 
 const BOARD = [
-  ['Hannah van Dijk', 'voorzitter',      '1489659831163-682b5af42225'],
-  ['Ruben Pelser',    'penningmeester',  '1613936360976-8f35cf0e5461'],
-  ['Mariska Holt',    'secretaris',      '1597892657493-6847b9640bac'],
-  ['Joost Geesink',   'algemeen lid',    '1522040942177-269680274214'],
+  ['Hannah van Dijk', 'voorzitter',     '1489659831163-682b5af42225'],
+  ['Ruben Pelser',   'penningmeester', '1613936360976-8f35cf0e5461'],
+  ['Mariska Holt',   'secretaris',     '1597892657493-6847b9640bac'],
+  ['Joost Geesink',  'algemeen lid',   '1522040942177-269680274214'],
 ];
 
 export default function About() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const pad = isMobile ? '56px 20px' : isTablet ? '64px 32px' : '80px 48px';
+  const padSm = isMobile ? '20px' : isTablet ? '32px' : '48px';
+
   return (
     <div style={{ background: B.bg, color: B.ink, fontFamily: B.sans, minHeight: '100vh' }}>
       <Nav />
 
       {/* Hero */}
-      <section style={{ padding: '80px 48px 64px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'end' }}>
+      <section style={{ padding: isMobile ? '48px 20px 40px' : isTablet ? '64px 32px 48px' : '80px 48px 64px', display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 1fr', gap: 48, alignItems: 'end' }}>
         <div>
           <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 24 }}>★ Stichting Home of Football · est. 2024</div>
-          <h1 style={{ fontFamily: B.display, fontSize: 'clamp(72px, 10vw, 140px)', fontWeight: 900, lineHeight: .85, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0 }}>
+          <h1 style={{ fontFamily: B.display, fontSize: 'clamp(56px, 10vw, 140px)', fontWeight: 900, lineHeight: .85, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0 }}>
             For the<br /><span style={{ color: B.accent }}>love</span><br />of the game.
           </h1>
         </div>
         <img
           src={unsplash('1629217855633-79a6925d6c47', 800, 600)}
           alt="Bestuur Stichting Home of Football"
-          style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 8 }}
+          style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 8, marginTop: isTablet ? 32 : 0 }}
         />
       </section>
 
       {/* Mission */}
-      <section style={{ padding: '80px 48px', borderTop: `1px solid ${B.rule}` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 48 }}>
-          <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.muted, textTransform: 'uppercase' }}>§ Missie</div>
+      <section style={{ padding: pad, borderTop: `1px solid ${B.rule}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 2fr', gap: 48 }}>
+          <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.muted, textTransform: 'uppercase', marginBottom: isTablet ? 16 : 0 }}>§ Missie</div>
           <div>
-            <p style={{ fontFamily: B.display, fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-.02em', margin: '0 0 24px', maxWidth: 900 }}>
+            <p style={{ fontFamily: B.display, fontSize: 'clamp(24px, 3.5vw, 48px)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-.02em', margin: '0 0 24px' }}>
               We geloven dat voetbal de stad sneller verbindt dan welk ander instrument dan ook.
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: B.muted, maxWidth: 680 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: B.muted }}>
               Stichting Home of Football werd in 2024 opgericht. De Stadionloop is onze drager — de opbrengst stroomt direct naar projecten in jeugdzorg, onderwijs en de wijken van Deventer. In 2025 ondersteunden we tien initiatieven; in 2026 mikken we op vijftien.
             </p>
           </div>
@@ -52,12 +57,12 @@ export default function About() {
       </section>
 
       {/* Pillars */}
-      <section style={{ padding: '48px', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+      <section style={{ padding: padSm, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2,1fr)' : 'repeat(3,1fr)', gap: 16 }}>
         {PILLARS.map(([n, title, desc], i) => (
-          <div key={i} style={{ background: B.surface, padding: 32, borderRadius: 8, position: 'relative', overflow: 'hidden', minHeight: 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div style={{ fontFamily: B.display, fontSize: 120, fontWeight: 900, letterSpacing: '-.04em', color: B.accent, lineHeight: .9 }}>{n}</div>
+          <div key={i} style={{ background: B.surface, padding: isMobile ? 24 : 32, borderRadius: 8, minHeight: isMobile ? 'auto' : 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 20 }}>
+            <div style={{ fontFamily: B.display, fontSize: isMobile ? 80 : 120, fontWeight: 900, letterSpacing: '-.04em', color: B.accent, lineHeight: .9 }}>{n}</div>
             <div>
-              <h3 style={{ fontFamily: B.display, fontSize: 32, fontWeight: 800, letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 12px', color: B.ink }}>{title}</h3>
+              <h3 style={{ fontFamily: B.display, fontSize: isMobile ? 24 : 32, fontWeight: 800, letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 12px', color: B.ink }}>{title}</h3>
               <p style={{ fontSize: 14, color: B.muted, margin: 0, lineHeight: 1.6 }}>{desc}</p>
             </div>
           </div>
@@ -65,9 +70,9 @@ export default function About() {
       </section>
 
       {/* Board */}
-      <section style={{ padding: '80px 48px', borderTop: `1px solid ${B.rule}` }}>
+      <section style={{ padding: pad, borderTop: `1px solid ${B.rule}` }}>
         <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.muted, textTransform: 'uppercase', marginBottom: 32 }}>★ Bestuur</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap: isMobile ? 12 : 16 }}>
           {BOARD.map(([name, role, imgId], i) => (
             <div key={i} style={{ background: B.surface, borderRadius: 8, overflow: 'hidden' }}>
               <img
@@ -75,9 +80,9 @@ export default function About() {
                 alt={name}
                 style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
               />
-              <div style={{ padding: '18px 20px 22px' }}>
-                <div style={{ fontFamily: B.display, fontSize: 18, fontWeight: 700, letterSpacing: '-.005em', textTransform: 'uppercase', color: B.ink }}>{name}</div>
-                <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, letterSpacing: '.12em', textTransform: 'uppercase', marginTop: 6 }}>{role}</div>
+              <div style={{ padding: isMobile ? '12px 14px 16px' : '18px 20px 22px' }}>
+                <div style={{ fontFamily: B.display, fontSize: isMobile ? 14 : 18, fontWeight: 700, letterSpacing: '-.005em', textTransform: 'uppercase', color: B.ink }}>{name}</div>
+                <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, letterSpacing: '.12em', textTransform: 'uppercase', marginTop: 4 }}>{role}</div>
               </div>
             </div>
           ))}

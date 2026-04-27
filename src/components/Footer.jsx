@@ -1,14 +1,14 @@
 import { B } from '../theme';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Footer() {
+  const { isMobile, isTablet } = useBreakpoint();
+
   return (
-    <footer style={{ borderTop: `1px solid ${B.rule}`, padding: '56px 48px 32px', background: B.bg }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 40, marginBottom: 48 }}>
+    <footer style={{ borderTop: `1px solid ${B.rule}`, padding: isMobile ? '40px 20px 24px' : isTablet ? '48px 32px 24px' : '56px 48px 32px', background: B.bg }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? 40 : isTablet ? 32 : 40, marginBottom: 48 }}>
         <div>
-          <div style={{
-            fontFamily: B.display, fontSize: 80, fontWeight: 900,
-            lineHeight: .85, letterSpacing: '-.03em', textTransform: 'uppercase', marginBottom: 18,
-          }}>
+          <div style={{ fontFamily: B.display, fontSize: isMobile ? 56 : 80, fontWeight: 900, lineHeight: .85, letterSpacing: '-.03em', textTransform: 'uppercase', marginBottom: 18 }}>
             Stadion<br /><span style={{ color: B.accent }}>loop.</span>
           </div>
           <div style={{ maxWidth: 300, lineHeight: 1.55, color: B.muted, fontSize: 13 }}>
@@ -28,11 +28,7 @@ export default function Footer() {
           </div>
         ))}
       </div>
-      <div style={{
-        borderTop: `1px solid ${B.rule}`, paddingTop: 24,
-        display: 'flex', justifyContent: 'space-between',
-        fontFamily: B.mono, fontSize: 11, letterSpacing: '.1em', color: B.muted, textTransform: 'uppercase',
-      }}>
+      <div style={{ borderTop: `1px solid ${B.rule}`, paddingTop: 24, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', gap: isMobile ? 8 : 0, fontFamily: B.mono, fontSize: 11, letterSpacing: '.1em', color: B.muted, textTransform: 'uppercase' }}>
         <span>© 2026 · Stichting Home of Football · KvK 92847661</span>
         <span>De Adelaarshorst, Deventer</span>
       </div>
