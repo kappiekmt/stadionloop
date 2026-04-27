@@ -1,8 +1,50 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { B } from '../theme';
 import { unsplash } from '../utils';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+
+function ManifestoSection() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const words1 = 'Voetbal is meer dan negentig minuten.'.split(' ');
+  const words2 = 'De Stadionloop is meer dan tien kilometer.'.split(' ');
+  const all = [
+    ...words1.map((w, i) => ({ w, muted: false, d: i * 0.07 })),
+    ...words2.map((w, i) => ({ w, muted: true,  d: (words1.length + i) * 0.07 })),
+  ];
+
+  return (
+    <section ref={ref} style={{ padding: '120px 48px', borderTop: `1px solid ${B.rule}` }}>
+      <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 32 }}>§ Manifesto</div>
+      <h2 style={{ fontFamily: B.display, fontSize: 'clamp(48px, 8vw, 128px)', fontWeight: 900, lineHeight: .88, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0, maxWidth: 1400 }}>
+        {all.map(({ w, muted, d }, i) => (
+          <span key={i} style={{
+            display: 'inline-block',
+            color: muted ? B.muted : B.ink,
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(32px)',
+            transition: `opacity 0.75s ease ${d}s, transform 0.75s ease ${d}s`,
+            marginRight: '0.22em',
+          }}>{w}</span>
+        ))}
+      </h2>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -27,10 +69,7 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'end', gap: 48 }}>
             <div>
               <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>
-              <h1 style={{
-                fontFamily: B.display, fontSize: 'clamp(100px, 13vw, 200px)', lineHeight: .82,
-                fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase',
-              }}>
+              <h1 style={{ fontFamily: B.display, fontSize: 'clamp(100px, 13vw, 200px)', lineHeight: .82, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
                 De<br />
                 <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>STADION{'\n'}LOOP.</span>
               </h1>
@@ -63,8 +102,32 @@ export default function Home() {
         ))}
       </section>
 
+      {/* YouTube video */}
+      <section style={{ padding: '80px 48px', borderTop: `1px solid ${B.rule}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 64, alignItems: 'center', marginBottom: 40 }}>
+          <div>
+            <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 16 }}>▶ In beeld</div>
+            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(36px, 4vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 20px' }}>
+              De tocht in beeld.
+            </h2>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: B.muted, margin: 0 }}>
+              600 kilometer langs alle 18 Eredivisie-stadions. 28 etappes. Één missie: voetbal weer van iedereen maken.
+            </p>
+          </div>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 8, background: B.surface }}>
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/FmbgpDt8e0A?rel=0&modestbranding=1&color=white"
+              title="Stadionloop 2025 — De tussenstand"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Auction promo */}
-      <section style={{ padding: '48px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, background: B.bg }}>
+      <section style={{ padding: '48px', borderTop: `1px solid ${B.rule}`, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, background: B.bg }}>
         <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', minHeight: 520 }}>
           <img
             src={unsplash('1616124619460-ff4ed8f4683c', 900, 600)}
@@ -97,12 +160,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Manifesto */}
-      <section style={{ padding: '120px 48px', borderTop: `1px solid ${B.rule}` }}>
-        <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 32 }}>§ Manifesto</div>
-        <h2 style={{ fontFamily: B.display, fontSize: 'clamp(48px, 8vw, 128px)', fontWeight: 900, lineHeight: .88, letterSpacing: '-.04em', textTransform: 'uppercase', margin: 0, maxWidth: 1400 }}>
-          Voetbal is meer dan negentig minuten. <span style={{ color: B.muted }}>De Stadionloop is meer dan tien kilometer.</span>
-        </h2>
+      {/* Manifesto — word-by-word scroll reveal */}
+      <ManifestoSection />
+
+      {/* Pim Oostendorp */}
+      <section style={{ padding: '100px 48px', borderTop: `1px solid ${B.rule}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+          <div>
+            <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, textTransform: 'uppercase', marginBottom: 24 }}>★ Het gezicht van de Stadionloop</div>
+            <h2 style={{ fontFamily: B.display, fontSize: 'clamp(36px, 4vw, 64px)', fontWeight: 900, lineHeight: .92, letterSpacing: '-.03em', textTransform: 'uppercase', margin: '0 0 32px' }}>
+              Pim (77) loopt voor de toekomst van anderen. Jij ook?
+            </h2>
+            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 20px', maxWidth: 520 }}>
+              Loop mee. Of sponsor een etappe. Elke stap telt. Of je nu de wandelschoenen aantrekt of een etappe adopteert als sponsor — jij helpt mee om voetbal weer toegankelijk te maken voor iedereen.
+            </p>
+            <p style={{ fontSize: 16, lineHeight: 1.75, color: B.muted, margin: '0 0 40px', maxWidth: 520 }}>
+              Samen zorgen we ervoor dat niemand aan de zijlijn hoeft te staan. Niet in het stadion. En niet in het leven. Maak van voetbal weer iets van ons allemaal.
+            </p>
+            <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: '16px 32px', fontSize: 13, letterSpacing: '.06em', fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>
+              Etappe sponsoren →
+            </button>
+          </div>
+          <div style={{ borderRadius: 12, overflow: 'hidden' }}>
+            <img
+              src={unsplash('1489659831163-682b5af42225', 700, 620)}
+              alt="Pim Oostendorp loopt de Stadionloop"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+        </div>
       </section>
 
       {/* Partners */}
