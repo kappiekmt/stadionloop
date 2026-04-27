@@ -45,7 +45,7 @@ export default function Auction() {
       <section style={{ padding: '8px 48px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: 8 }}>
           {FILTERS.map((f, i) => (
-            <span key={f} style={{
+            <span key={f} className="filter-chip" style={{
               padding: '10px 18px', borderRadius: 999, fontSize: 12.5,
               fontWeight: i === 0 ? 600 : 500,
               background: i === 0 ? B.ink : B.surface,
@@ -61,7 +61,7 @@ export default function Auction() {
       <section style={{ padding: '8px 48px 80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
           {AUCTION_ITEMS.map((it, i) => (
-            <article key={it.id} style={{ background: B.surface, borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }}>
+            <article key={it.id} className="auction-card" style={{ background: B.surface, borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }}>
               <div style={{ position: 'relative' }}>
                 <Placeholder label={it.title.split('—')[0]} tone={it.tone} ratio="4 / 3" />
                 <div style={{ position: 'absolute', top: 14, left: 14, padding: '5px 10px', background: 'rgba(14,14,14,.7)', backdropFilter: 'blur(8px)', borderRadius: 999, fontFamily: B.mono, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: B.ink }}>
@@ -79,7 +79,7 @@ export default function Auction() {
                     <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: 4 }}>Bod · {it.bids} biedingen</div>
                     <div style={{ fontFamily: B.display, fontSize: 28, fontWeight: 800, letterSpacing: '-.01em', color: B.ink }}>{formatEUR(it.bid)}</div>
                   </div>
-                  <button style={{ background: B.accent, color: B.bg, border: 'none', padding: '12px 18px', fontSize: 12, letterSpacing: '.04em', fontWeight: 600, borderRadius: 999 }}>Bied →</button>
+                  <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: '12px 18px', fontSize: 12, letterSpacing: '.04em', fontWeight: 600, borderRadius: 999 }}>Bied →</button>
                 </div>
               </div>
             </article>

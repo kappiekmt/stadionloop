@@ -32,8 +32,8 @@ export default function Home() {
               </h1>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end' }}>
-              <button style={{ background: B.accent, color: B.bg, border: 'none', padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Schrijf je in →</button>
-              <button style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>
+              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Schrijf je in →</button>
+              <button className="btn-ghost" style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function Home() {
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', textTransform: 'uppercase', opacity: .85 }}>Start veiling</div>
             <div style={{ fontFamily: B.display, fontSize: 'clamp(48px, 5vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase' }}>04.06<br />2026</div>
             <Link to="/veiling">
-              <button style={{ background: B.bg, color: B.ink, border: 'none', padding: '14px 24px', borderRadius: 999, fontWeight: 600, fontSize: 13, letterSpacing: '.04em' }}>Naar veiling →</button>
+              <button className="btn-dark" style={{ background: B.bg, color: B.ink, border: 'none', padding: '14px 24px', borderRadius: 999, fontWeight: 600, fontSize: 13, letterSpacing: '.04em' }}>Naar veiling →</button>
             </Link>
           </div>
         </div>
