@@ -66,12 +66,12 @@ export default function Home() {
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,14,14,.4) 0%, rgba(14,14,14,.1) 40%, rgba(14,14,14,.95) 100%)' }} />
 
-        <div style={{ position: 'absolute', top: 24, left: isMobile ? 20 : 48, right: isMobile ? 20 : 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: isMobile ? 10 : 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
+        <div style={{ position: 'absolute', top: 24, left: isMobile ? 20 : isTablet ? 32 : 48, right: isMobile ? 20 : isTablet ? 32 : 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: isMobile ? 10 : 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
           <span><span style={{ color: B.accent }}>●&nbsp;LIVE</span>{isMobile ? '' : ' · Editie 03 · 13.06.2026'}</span>
           {!isMobile && <span>De Adelaarshorst · Deventer · NL</span>}
         </div>
 
-        <div style={{ position: 'absolute', left: isMobile ? 20 : 48, right: isMobile ? 20 : 48, bottom: isMobile ? 56 : 80 }}>
+        <div style={{ position: 'absolute', left: isMobile ? 20 : isTablet ? 32 : 48, right: isMobile ? 20 : isTablet ? 32 : 48, bottom: isMobile ? 56 : 80 }}>
           <div style={{ display: isMobile ? 'flex' : 'grid', flexDirection: isMobile ? 'column' : undefined, gridTemplateColumns: isMobile ? undefined : '1fr auto', alignItems: 'end', gap: isMobile ? 24 : 48 }}>
             <div>
               {!isMobile && <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>}
@@ -88,7 +88,7 @@ export default function Home() {
         </div>
 
         {/* Ticker */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: `1px solid ${B.rule}`, background: 'rgba(14,14,14,.6)', backdropFilter: 'blur(8px)', padding: isMobile ? '12px 20px' : '14px 48px', display: 'flex', gap: isMobile ? 24 : 48, fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: `1px solid ${B.rule}`, background: 'rgba(14,14,14,.6)', backdropFilter: 'blur(8px)', padding: isMobile ? '12px 20px' : isTablet ? '14px 32px' : '14px 48px', display: 'flex', gap: isMobile ? 24 : 48, fontFamily: B.mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: B.muted, overflow: 'hidden' }}>
           <span><span style={{ color: B.accent }}>★</span>&nbsp;&nbsp;Inschrijving open</span>
           {!isMobile && <span>2400 lopers vorig jaar</span>}
           <span>€ 87.000 opgehaald</span>
