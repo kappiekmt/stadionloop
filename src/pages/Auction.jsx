@@ -1,7 +1,7 @@
 import { B } from '../theme';
+import { unsplash } from '../utils';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import Placeholder from '../components/Placeholder';
 import { AUCTION_ITEMS, formatEUR } from '../data/auctionItems';
 
 const FILTERS = ['Alle (12)', 'Matchworn', 'Memorabilia', 'Ervaringen', 'Kunst'];
@@ -63,7 +63,11 @@ export default function Auction() {
           {AUCTION_ITEMS.map((it, i) => (
             <article key={it.id} className="auction-card" style={{ background: B.surface, borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }}>
               <div style={{ position: 'relative' }}>
-                <Placeholder label={it.title.split('—')[0]} tone={it.tone} ratio="4 / 3" />
+                <img
+                  src={unsplash(it.img, 600, 450)}
+                  alt={it.title}
+                  style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }}
+                />
                 <div style={{ position: 'absolute', top: 14, left: 14, padding: '5px 10px', background: 'rgba(14,14,14,.7)', backdropFilter: 'blur(8px)', borderRadius: 999, fontFamily: B.mono, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: B.ink }}>
                   Lot {String(i + 1).padStart(2, '0')}
                 </div>

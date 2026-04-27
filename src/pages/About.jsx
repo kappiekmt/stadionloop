@@ -1,7 +1,7 @@
 import { B } from '../theme';
+import { unsplash } from '../utils';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import Placeholder from '../components/Placeholder';
 
 const PILLARS = [
   ['01', 'Jeugd', 'Sport, talentbegeleiding en mentale steun voor jongeren in Deventer-Oost.', 'red'],
@@ -10,10 +10,10 @@ const PILLARS = [
 ];
 
 const BOARD = [
-  ['Hannah van Dijk', 'voorzitter'],
-  ['Ruben Pelser', 'penningmeester'],
-  ['Mariska Holt', 'secretaris'],
-  ['Joost Geesink', 'algemeen lid'],
+  ['Hannah van Dijk', 'voorzitter',      'uR3ncKqhA9M'],
+  ['Ruben Pelser',    'penningmeester',  'DnIIvjC8C3Y'],
+  ['Mariska Holt',    'secretaris',      'axCCLfPJGz4'],
+  ['Joost Geesink',   'algemeen lid',    'mvYr0u6t3cA'],
 ];
 
 export default function About() {
@@ -29,7 +29,11 @@ export default function About() {
             For the<br /><span style={{ color: B.accent }}>love</span><br />of the game.
           </h1>
         </div>
-        <Placeholder label="bestuur · groepsfoto" tone="dark" ratio="4 / 3" />
+        <img
+          src={unsplash('pbaDZJJOepI', 800, 600)}
+          alt="Bestuur Stichting Home of Football"
+          style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 8 }}
+        />
       </section>
 
       {/* Mission */}
@@ -64,9 +68,13 @@ export default function About() {
       <section style={{ padding: '80px 48px', borderTop: `1px solid ${B.rule}` }}>
         <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.muted, textTransform: 'uppercase', marginBottom: 32 }}>★ Bestuur</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
-          {BOARD.map(([name, role], i) => (
+          {BOARD.map(([name, role, imgId], i) => (
             <div key={i} style={{ background: B.surface, borderRadius: 8, overflow: 'hidden' }}>
-              <Placeholder label={name.split(' ')[0].toLowerCase()} tone="dark" ratio="3 / 4" />
+              <img
+                src={unsplash(imgId, 400, 533)}
+                alt={name}
+                style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+              />
               <div style={{ padding: '18px 20px 22px' }}>
                 <div style={{ fontFamily: B.display, fontSize: 18, fontWeight: 700, letterSpacing: '-.005em', textTransform: 'uppercase', color: B.ink }}>{name}</div>
                 <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, letterSpacing: '.12em', textTransform: 'uppercase', marginTop: 6 }}>{role}</div>

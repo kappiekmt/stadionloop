@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { B } from '../theme';
+import { unsplash } from '../utils';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import Placeholder from '../components/Placeholder';
 
 export default function Home() {
   return (
@@ -11,7 +11,11 @@ export default function Home() {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: 780, overflow: 'hidden' }}>
-        <Placeholder label="hero · stadionloop, golden hour" tone="dark" ratio="auto" style={{ height: '100%' }} />
+        <img
+          src={unsplash('m8XrKi9vjnA', 1920, 780)}
+          alt="Hardlopers in het stadion bij gouden uur"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,14,14,.4) 0%, rgba(14,14,14,.1) 40%, rgba(14,14,14,.95) 100%)' }} />
 
         <div style={{ position: 'absolute', top: 32, left: 48, right: 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
@@ -62,7 +66,11 @@ export default function Home() {
       {/* Auction promo */}
       <section style={{ padding: '48px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, background: B.bg }}>
         <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', minHeight: 520 }}>
-          <Placeholder label="memorabilia · matchworn shirts" tone="red" ratio="auto" style={{ height: '100%' }} />
+          <img
+            src={unsplash('hlnIfE0q3ro', 900, 600)}
+            alt="Go Ahead Eagles memorabilia en matchworn shirts"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+          />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,.55), rgba(0,0,0,.1))' }} />
           <div style={{ position: 'absolute', top: 24, left: 24, fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.gold, textTransform: 'uppercase' }}>★ Coming soon</div>
           <div style={{ position: 'absolute', bottom: 32, left: 32, right: 32 }}>
