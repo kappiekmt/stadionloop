@@ -21,17 +21,9 @@ export default function Nav() {
       position: 'sticky', top: 0,
       background: 'rgba(14,14,14,.85)', backdropFilter: 'blur(12px)', zIndex: 100,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div style={{
-          width: 30, height: 30, background: B.accent,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: B.display, fontWeight: 900, fontSize: 16, color: B.ink,
-          transform: 'skewX(-8deg)',
-        }}>S</div>
-        <Link to="/" style={{ fontFamily: B.display, fontSize: 15, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase' }}>
-          Stadionloop
-        </Link>
-      </div>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+        <img src="/logo.png" alt="Stadionloop" style={{ height: 44, width: 44, objectFit: 'contain' }} />
+      </Link>
 
       <div style={{ display: 'flex', gap: 6, background: B.surface, padding: 6, borderRadius: 999 }}>
         {items.map(([path, label]) => (
