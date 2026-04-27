@@ -10,10 +10,10 @@ const PILLARS = [
 ];
 
 const BOARD = [
-  ['Hannah van Dijk', 'voorzitter',      'uR3ncKqhA9M'],
-  ['Ruben Pelser',    'penningmeester',  'DnIIvjC8C3Y'],
-  ['Mariska Holt',    'secretaris',      'axCCLfPJGz4'],
-  ['Joost Geesink',   'algemeen lid',    'mvYr0u6t3cA'],
+  ['Hannah van Dijk', 'voorzitter',      '1489659831163-682b5af42225'],
+  ['Ruben Pelser',    'penningmeester',  '1613936360976-8f35cf0e5461'],
+  ['Mariska Holt',    'secretaris',      '1597892657493-6847b9640bac'],
+  ['Joost Geesink',   'algemeen lid',    '1522040942177-269680274214'],
 ];
 
 export default function About() {
@@ -30,7 +30,7 @@ export default function About() {
           </h1>
         </div>
         <img
-          src={unsplash('pbaDZJJOepI', 800, 600)}
+          src={unsplash('1629217855633-79a6925d6c47', 800, 600)}
           alt="Bestuur Stichting Home of Football"
           style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 8 }}
         />

@@ -12,7 +12,7 @@ export default function Home() {
       {/* Hero */}
       <section style={{ position: 'relative', height: 780, overflow: 'hidden' }}>
         <img
-          src={unsplash('m8XrKi9vjnA', 1920, 780)}
+          src={unsplash('1522778526097-ce0a22ceb253', 1920, 780)}
           alt="Hardlopers in het stadion bij gouden uur"
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         />
@@ -67,7 +67,7 @@ export default function Home() {
       <section style={{ padding: '48px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, background: B.bg }}>
         <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', minHeight: 520 }}>
           <img
-            src={unsplash('hlnIfE0q3ro', 900, 600)}
+            src={unsplash('1616124619460-ff4ed8f4683c', 900, 600)}
             alt="Go Ahead Eagles memorabilia en matchworn shirts"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           />
