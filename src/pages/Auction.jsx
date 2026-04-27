@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { B } from '../theme';
 import { unsplash } from '../utils';
 import { useBreakpoint } from '../hooks/useBreakpoint';
@@ -6,10 +7,29 @@ import Footer from '../components/Footer';
 import { AUCTION_ITEMS, formatEUR } from '../data/auctionItems';
 
 const FILTERS = ['Alle (12)', 'Matchworn', 'Memorabilia', 'Ervaringen', 'Kunst'];
-const COUNTDOWN = [['07', 'D'], ['14', 'U'], ['22', 'M'], ['08', 'S']];
+const CLOSE_DATE = new Date('2026-06-11T21:00:00');
+
+function useCountdown(target) {
+  const calc = () => {
+    const diff = Math.max(0, target - Date.now());
+    return {
+      d: Math.floor(diff / 86400000),
+      h: Math.floor((diff % 86400000) / 3600000),
+      m: Math.floor((diff % 3600000) / 60000),
+      s: Math.floor((diff % 60000) / 1000),
+    };
+  };
+  const [t, setT] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setT(calc()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return t;
+}
 
 export default function Auction() {
   const { isMobile, isTablet } = useBreakpoint();
+  const { d, h, m, s } = useCountdown(CLOSE_DATE);
   const pad = isMobile ? '20px' : isTablet ? '32px' : '48px';
 
   return (
@@ -35,9 +55,11 @@ export default function Auction() {
         <div style={{ background: B.surface, padding: isMobile ? 20 : 32, borderRadius: 8, marginTop: isTablet ? 32 : 0 }}>
           <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', color: B.muted, textTransform: 'uppercase', marginBottom: 20 }}>Veiling sluit over</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: isMobile ? 8 : 12 }}>
-            {COUNTDOWN.map(([n, l], i) => (
-              <div key={i} style={{ background: B.bg, padding: isMobile ? '14px 6px' : '20px 8px', textAlign: 'center', borderRadius: 6 }}>
-                <div style={{ fontFamily: B.display, fontSize: isMobile ? 36 : 48, fontWeight: 900, letterSpacing: '-.03em', lineHeight: 1, color: i === 0 ? B.accent : B.ink }}>{n}</div>
+            {[[d, 'D'], [h, 'U'], [m, 'M'], [s, 'S']].map(([n, l], i) => (
+              <div key={l} style={{ background: B.bg, padding: isMobile ? '14px 6px' : '20px 8px', textAlign: 'center', borderRadius: 6 }}>
+                <div style={{ fontFamily: B.display, fontSize: isMobile ? 36 : 48, fontWeight: 900, letterSpacing: '-.03em', lineHeight: 1, color: i === 0 ? B.accent : B.ink }}>
+                  {String(n).padStart(2, '0')}
+                </div>
                 <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, marginTop: 6, letterSpacing: '.1em' }}>{l}</div>
               </div>
             ))}
