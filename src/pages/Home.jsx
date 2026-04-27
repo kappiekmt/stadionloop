@@ -72,16 +72,16 @@ export default function Home() {
         </div>
 
         <div style={{ position: 'absolute', left: isMobile ? 20 : isTablet ? 32 : 48, right: isMobile ? 20 : isTablet ? 32 : 48, bottom: isMobile ? 56 : 80 }}>
-          <div style={{ display: isMobile ? 'flex' : 'grid', flexDirection: isMobile ? 'column' : undefined, gridTemplateColumns: isMobile ? undefined : '1fr auto', alignItems: 'end', gap: isMobile ? 24 : 48 }}>
+          <div style={{ display: isMobile ? 'flex' : 'grid', flexDirection: isMobile ? 'column' : undefined, gridTemplateColumns: isMobile ? undefined : '1fr auto', alignItems: isMobile ? 'flex-start' : 'end', gap: isMobile ? 20 : 48 }}>
             <div>
               {!isMobile && <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>}
-              <h1 style={{ fontFamily: B.display, fontSize: 'clamp(72px, 13vw, 200px)', lineHeight: .82, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
+              <h1 style={{ fontFamily: B.display, fontSize: isMobile ? 'clamp(44px, 12vw, 58px)' : 'clamp(72px, 13vw, 200px)', lineHeight: .85, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
                 De<br />
-                <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>STADION{'\n'}LOOP.</span>
+                <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>Stadion<br />loop.</span>
               </h1>
             </div>
-            <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: 10, alignItems: isMobile ? 'center' : 'flex-end' }}>
-              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: isMobile ? '14px 20px' : '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Inschrijven →</button>
+            <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: 10, alignItems: 'flex-start' }}>
+              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: isMobile ? '13px 22px' : '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Inschrijven →</button>
               {!isMobile && <button className="btn-ghost" style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>}
             </div>
           </div>
