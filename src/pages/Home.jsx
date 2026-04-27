@@ -188,9 +188,9 @@ export default function Home() {
           </div>
           <div style={{ borderRadius: 12, overflow: 'hidden', order: isTablet ? -1 : 0 }}>
             <img
-              src={unsplash('1489659831163-682b5af42225', 700, 620)}
+              src="/pim-loopt.webp"
               alt="Pim Oostendorp loopt de Stadionloop"
-              style={{ width: '100%', aspectRatio: isTablet ? '16/9' : '4/3', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', aspectRatio: isTablet ? '16/9' : '4/3', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
             />
           </div>
         </div>
