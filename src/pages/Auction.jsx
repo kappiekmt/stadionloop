@@ -67,7 +67,7 @@ export default function Auction() {
                 <div style={{ position: 'absolute', top: 14, left: 14, padding: '5px 10px', background: 'rgba(14,14,14,.7)', backdropFilter: 'blur(8px)', borderRadius: 999, fontFamily: B.mono, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: B.ink }}>
                   Lot {String(i + 1).padStart(2, '0')}
                 </div>
-                <div style={{ position: 'absolute', top: 14, right: 14, padding: '5px 10px', background: B.accent, borderRadius: 999, fontFamily: B.mono, fontSize: 10, letterSpacing: '.1em', fontWeight: 600, color: B.ink }}>
+                <div style={{ position: 'absolute', top: 14, right: 14, padding: '5px 10px', background: B.accent, borderRadius: 999, fontFamily: B.mono, fontSize: 10, letterSpacing: '.1em', fontWeight: 600, color: B.bg }}>
                   {it.ends}
                 </div>
               </div>
@@ -79,7 +79,7 @@ export default function Auction() {
                     <div style={{ fontFamily: B.mono, fontSize: 10, color: B.muted, letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: 4 }}>Bod · {it.bids} biedingen</div>
                     <div style={{ fontFamily: B.display, fontSize: 28, fontWeight: 800, letterSpacing: '-.01em', color: B.ink }}>{formatEUR(it.bid)}</div>
                   </div>
-                  <button style={{ background: B.accent, color: B.ink, border: 'none', padding: '12px 18px', fontSize: 12, letterSpacing: '.04em', fontWeight: 600, borderRadius: 999 }}>Bied →</button>
+                  <button style={{ background: B.accent, color: B.bg, border: 'none', padding: '12px 18px', fontSize: 12, letterSpacing: '.04em', fontWeight: 600, borderRadius: 999 }}>Bied →</button>
                 </div>
               </div>
             </article>

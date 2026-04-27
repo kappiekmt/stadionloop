@@ -4,7 +4,7 @@ export const B = {
   ink: '#f1ead9',
   muted: '#8a8275',
   rule: '#322f2b',
-  accent: '#e63b1e',
+  accent: '#ADDF00',
   gold: '#f1ead9',
   display: '"Archivo", "Archivo Narrow", system-ui, sans-serif',
   sans: '"Geist", "Inter", system-ui, sans-serif',

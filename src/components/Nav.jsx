@@ -48,9 +48,9 @@ export default function Nav() {
       <div style={{ display: 'flex', gap: 10, alignItems: 'center', justifyContent: 'flex-end' }}>
         <span style={{ fontFamily: B.mono, fontSize: 11, color: B.muted }}>NL</span>
         <button style={{
-          background: B.accent, color: B.ink, border: 'none',
+          background: B.accent, color: B.bg, border: 'none',
           padding: '10px 20px', fontSize: 12, letterSpacing: '.04em',
-          fontFamily: B.sans, fontWeight: 600, borderRadius: 999,
+          fontFamily: B.sans, fontWeight: 700, borderRadius: 999,
         }}>Schrijf in</button>
       </div>
     </nav>

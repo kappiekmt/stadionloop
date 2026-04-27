@@ -32,7 +32,7 @@ export default function Home() {
               </h1>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end' }}>
-              <button style={{ background: B.accent, color: B.ink, border: 'none', padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Schrijf je in →</button>
+              <button style={{ background: B.accent, color: B.bg, border: 'none', padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Schrijf je in →</button>
               <button style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function Home() {
             </div>
             <div style={{ fontSize: 14, color: B.muted, lineHeight: 1.55, marginTop: 24 }}>Shirts, ballen, tribunestoelen en stadionervaringen. 100% van de opbrengst gaat naar projecten in Deventer.</div>
           </div>
-          <div style={{ padding: 40, background: B.accent, color: B.ink, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ padding: 40, background: B.accent, color: B.bg, borderRadius: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.16em', textTransform: 'uppercase', opacity: .85 }}>Start veiling</div>
             <div style={{ fontFamily: B.display, fontSize: 'clamp(48px, 5vw, 64px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-.03em', textTransform: 'uppercase' }}>04.06<br />2026</div>
             <Link to="/veiling">
