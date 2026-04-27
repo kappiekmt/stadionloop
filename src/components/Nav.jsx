@@ -5,9 +5,10 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const items = [
   ['/', 'Home'],
+  ['/etappes', 'Etappes'],
+  ['/barometers', 'Barometers'],
   ['/veiling', 'Veiling'],
-  ['/over', 'Stichting'],
-  ['/partners', 'Partners'],
+  ['/sponsoren', 'Sponsoren'],
   ['/contact', 'Contact'],
 ];
 
@@ -37,8 +38,8 @@ export default function Nav() {
               <Link key={path} to={path} style={{
                 color: active === path ? B.bg : B.muted,
                 background: active === path ? B.ink : 'transparent',
-                textDecoration: 'none', padding: '8px 18px', borderRadius: 999,
-                fontWeight: active === path ? 600 : 500, fontSize: 12.5, letterSpacing: '.02em',
+                textDecoration: 'none', padding: '8px 14px', borderRadius: 999,
+                fontWeight: active === path ? 600 : 500, fontSize: 11.5, letterSpacing: '.02em',
                 transition: 'all .15s',
               }}>{label}</Link>
             ))}
