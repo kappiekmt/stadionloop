@@ -64,7 +64,7 @@ export default function Home() {
           alt="Hardlopers in het stadion bij gouden uur"
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,14,14,.55) 0%, rgba(14,14,14,.35) 30%, rgba(14,14,14,.82) 60%, rgba(14,14,14,.97) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,14,14,.4) 0%, rgba(14,14,14,.1) 40%, rgba(14,14,14,.95) 100%)' }} />
 
         <div style={{ position: 'absolute', top: 24, left: isMobile ? 20 : isTablet ? 32 : 48, right: isMobile ? 20 : isTablet ? 32 : 48, display: 'flex', justifyContent: 'space-between', fontFamily: B.mono, fontSize: isMobile ? 10 : 11, letterSpacing: '.18em', textTransform: 'uppercase', color: B.ink }}>
           <span><span style={{ color: B.accent }}>●&nbsp;LIVE</span>{isMobile ? '' : ' · Editie 03 · 13.06.2026'}</span>
@@ -75,16 +75,13 @@ export default function Home() {
           <div style={{ display: isMobile ? 'flex' : 'grid', flexDirection: isMobile ? 'column' : undefined, gridTemplateColumns: isMobile ? undefined : '1fr auto', alignItems: isMobile ? 'flex-start' : 'end', gap: isMobile ? 20 : 48 }}>
             <div>
               {!isMobile && <div style={{ fontFamily: B.mono, fontSize: 11, letterSpacing: '.18em', color: B.accent, marginBottom: 16, textTransform: 'uppercase' }}>10 KM · 5 KM · 1 KM Familieloop</div>}
-              <h1 style={{ fontFamily: B.display, fontSize: isMobile ? 'clamp(64px, 17vw, 82px)' : 'clamp(72px, 13vw, 200px)', lineHeight: .85, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
+              <h1 style={{ fontFamily: B.display, fontSize: isMobile ? 'clamp(44px, 12vw, 58px)' : 'clamp(72px, 13vw, 200px)', lineHeight: .85, fontWeight: 900, letterSpacing: '-.04em', margin: 0, textTransform: 'uppercase' }}>
                 De<br />
-                {isMobile
-                  ? <span style={{ color: B.accent }}>Stadion<br />loop.</span>
-                  : <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>Stadion<br />loop.</span>
-                }
+                <span style={{ WebkitTextStroke: `2px ${B.ink}`, color: 'transparent' }}>Stadion<br />loop.</span>
               </h1>
             </div>
             <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: 10, alignItems: 'flex-start' }}>
-              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: isMobile ? '16px 0' : '18px 32px', width: isMobile ? '100%' : 'auto', fontSize: isMobile ? 14 : 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Inschrijven →</button>
+              <button className="btn-accent" style={{ background: B.accent, color: B.bg, border: 'none', padding: isMobile ? '13px 22px' : '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 700, textTransform: 'uppercase', borderRadius: 999 }}>Inschrijven →</button>
               {!isMobile && <button className="btn-ghost" style={{ background: 'transparent', color: B.ink, border: `1px solid ${B.ink}`, padding: '18px 32px', fontSize: 13, letterSpacing: '.06em', fontFamily: B.sans, fontWeight: 600, textTransform: 'uppercase', borderRadius: 999 }}>Parcours bekijken</button>}
             </div>
           </div>
